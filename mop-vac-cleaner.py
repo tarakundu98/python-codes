@@ -18,4 +18,3 @@ while i<row:
     print()
 print("After cleaning the room:")
 print(room)
-

@@ -23,4 +23,4 @@ if __name__ == "__main__":
     auxiliary_towers = towers[2:]
     count = 0
     tower_of_hanoi(num_disks, source_tower, target_tower, auxiliary_towers)
-    # print(f"\nTotal number of moves: {count}")
+    print(f"\nTotal number of moves: {count}")

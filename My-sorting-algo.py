@@ -18,10 +18,6 @@ def sort(arr):
     
     return arr
 
-def main():
-    arr = list(map(int, input("Enter array elements: ").split()))
-    sorted_arr = sort(arr)
-    print("Sorted array:", sorted_arr)
-
-if __name__ == "__main__":
-    main()
+arr = list(map(int, input("Enter array elements: ").split()))
+sorted_arr = sort(arr)
+print("Sorted array:", sorted_arr)

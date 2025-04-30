@@ -7,9 +7,7 @@ def solve_n_queens(N):
         if row == N:
             return True
         for col in random.sample(range(N), N):
-            if all(
-                board[i] != col and abs(board[i] - col) != row - i for i in range(row)
-            ):
+            if all(board[i] != col and abs(board[i] - col) != row - i for i in range(row)):
                 board[row] = col
                 if backtrack(row + 1):
                     return True
@@ -21,9 +19,9 @@ def solve_n_queens(N):
 
 def print_board(board):
     for r in board:
-        row = ['.'] * len(board)
-        row[r] = 'Q'
-        print(' '.join(row))
+        row = ["."] * len(board)
+        row[r] = "Q"
+        print(" ".join(row))
 
 N = int(input("Enter No. of Queen: "))
 if N < 4:

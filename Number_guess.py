@@ -9,7 +9,7 @@ def number_guessing_ai():
         attempts += 1
         
         print(f"Is your number {guess}? (Enter 'higher', 'lower', or 'correct')")
-        response = input().strip().lower()
+        response = input("→ ").strip().lower()
         
         if response == 'correct':
             print(f"Yay! I guessed your number in {attempts} tries.")
