@@ -1,40 +1,26 @@
-import numpy as np
-import matplotlib.pyplot as plt
+equation = input("Enter the equation in terms of x (example: -x**2 + 5): ")
+initial_x = float(input("Enter the initial value of x: "))
 
-def generate_neighbors(x, step_size=1):
-    return [x - step_size, x + step_size]
+def objective_function(x):
+    return eval(equation)
 
-def hill_climbing(f, x0, max_iterations=1000):
-    x = x0  # Initial solution
-    iterations = 0
-    path = [x]  # Track steps for visualization
-    while iterations < max_iterations:
-        neighbors = generate_neighbors(x)  # Generate neighbors of x
-        best_neighbor = max(neighbors, key=f)
-        if f(best_neighbor) <= f(x):  # If the best neighbor is not better than x, stop
-            return x, path
-        x = best_neighbor  # Otherwise, continue with the best neighbor
-        path.append(x)
-        iterations += 1
-    return x, path  # Return last found maximum if max_iterations is reached
+def hill_climb(x):
+    step_size = 0.1
+    max_iterations = 100
 
-if __name__ == "__main__":
-    expr = input("Enter the function in terms of x (e.g., x**2 - 4*x + 4): ")
-    f = lambda x: eval(expr, {"x": x})  # Convert input string to function
-    x0 = int(input("Enter initial value: "))
-    
-    result, path = hill_climbing(f, x0)
-    print("Local maximum found at x =", result)
+    for _ in range(max_iterations):
+        left = x - step_size
+        right = x + step_size
 
-    # Plot the function
-    x_values = np.linspace(min(path)-10, max(path)+10, 400)
-    y_values = [f(x) for x in x_values]
-    
-    plt.plot(x_values, y_values, label=f"Function: {expr}")
-    plt.scatter(path, [f(x) for x in path], color='red', marker='o', label="Local Maxima")
-    plt.xlabel("x")
-    plt.ylabel("f(x)")
-    plt.title("Hill Climbing Algorithm Visualization")
-    plt.legend()
-    plt.grid()
-    plt.show()
+        if objective_function(left) > objective_function(x):
+            x = left
+        elif objective_function(right) > objective_function(x):
+            x = right
+        else:
+            break
+
+    return x, objective_function(x)
+
+best_x, best_value = hill_climb(initial_x)
+print("Local maximum at x =", round(best_x, 4))
+print("Maximum value =", round(best_value, 4))
